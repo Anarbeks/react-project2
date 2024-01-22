@@ -17,11 +17,12 @@ const Comments = () => {
   const handleDeleteClick = (id) => {
     deleteComments(id);
   };
-
+  useEffect(() => {
+    checkUser();
+  }, []);
   const [isComment, setIsComment] = useState("");
 
   const handleSave = () => {
-    checkUser();
     const newComment = {
       isComment,
       timestamp: new Date().toISOString(),
@@ -74,7 +75,7 @@ const Comments = () => {
           onChange={(e) => setIsComment(e.target.value)}
           value={isComment}
         />
-        <button onClick={handleSave}>Отправить</button>
+        <button onClick={() => handleSave}>Отправить</button>
       </div>
       <h1>Комментарии</h1>
       <div className="comments__container">
